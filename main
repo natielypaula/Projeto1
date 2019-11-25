@@ -1,0 +1,27 @@
+import itertools
+import pandas as pd
+
+def main():
+  palavra = ""
+  lista_anagramas = []
+  arquivo = "palavras.txt"
+
+  #Solicita palavra ao usuário
+  print("Digite uma palavra:", palavra)
+
+  #Executar a função anagrama para a geração da lista de anagramas da palavra digitada pelo usuário
+  lista_anagramas = anagrama(palavra)
+
+  #Executar a função filtro para verificar se algum na lista de anagramas corresponde as palavras válidas no arquivo txt.
+  result = filtro(arquivo, lista_anagramas)
+
+  print ("Os anagramas encontrados são:")
+  return result
+
+#Gera todos os anagramas possíveis para a palavra digitada pelo usuário
+def anagrama(palavra):
+    lista_anagramas = ["".join(perm) for perm in itertools.permutations(palavra)]
+    
+# Verifica se existe algum anagrama entre as palavras do arquivo txt.
+def filtro(arquivo, lista_anagramas):
+    palavras_validas = pd.read_csv(arquivo, header = None)
